@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Authors>Andreas Pouwels</Authors>
+    <Description>Small helper library with some helpfull functions</Description>
+    <Copyright>Andreas Pouwels</Copyright>
+    <PackageProjectUrl>https://github.com/InvaderZim85/ZimLabs.CoreLib</PackageProjectUrl>
+    <PackageIcon>Logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/InvaderZim85/ZimLabs.CoreLib</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>helper, extensions</PackageTags>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Version>2.0.0</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\Logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
