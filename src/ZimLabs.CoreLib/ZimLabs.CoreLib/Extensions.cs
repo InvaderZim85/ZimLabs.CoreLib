@@ -73,4 +73,46 @@ public static class Extensions
         return addBytes ? $"{result} ({fileInfo.Length:N0} Bytes)" : result;
     }
     #endregion
+
+    #region Objects
+    /// <summary>
+    /// Gets the attribute of the enum
+    /// </summary>
+    /// <typeparam name="T">The type of the attribute</typeparam>
+    /// <param name="value">The enum value</param>
+    /// <returns>The attribute</returns>
+    public static T? GetAttribute<T>(this Enum value) where T : Attribute
+    {
+        var memberInfo = value.GetType().GetMember(value.ToString());
+
+        if (memberInfo.Length == 0)
+            return null;
+
+        var attributes = memberInfo[0].GetCustomAttributes(typeof(T), false);
+
+        foreach (var attribute in attributes)
+        {
+            if (attribute is T result)
+                return result;
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Gets the attribute of the desired object
+    /// </summary>
+    /// <typeparam name="T">The type of the attribute</typeparam>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static T? GetAttribute<T>(this object value) where T : Attribute
+    {
+        var attribute = Attribute.GetCustomAttribute(value.GetType(), typeof(T));
+
+        if (attribute is T result)
+            return result;
+
+        return null;
+    }
+    #endregion
 }
