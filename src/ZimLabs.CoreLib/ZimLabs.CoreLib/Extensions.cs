@@ -115,4 +115,48 @@ public static class Extensions
         return null;
     }
     #endregion
+
+    #region DateTime
+    /// <summary>
+    /// Sets the time of the date / time value to the first possible value (00:00:00)
+    /// </summary>
+    /// <param name="value">The date / time value</param>
+    /// <returns>The date / time with the new time</returns>
+    public static DateTime SetStartOfDay(this DateTime value)
+    {
+        return value.SetTime(0, 0, 0);
+    }
+
+    /// <summary>
+    /// Sets the time of the date / time value to the last possible value (23:59:59)
+    /// </summary>
+    /// <param name="value">The date / time value</param>
+    /// <returns>The date / time value with the new time</returns>
+    public static DateTime SetEndOfDay(this DateTime value)
+    {
+        return value.SetTime(23, 59, 59);
+    }
+
+    /// <summary>
+    /// Sets the time of the date / time
+    /// </summary>
+    /// <param name="value">The date / time value</param>
+    /// <param name="hour">The hour (0 through 23)</param>
+    /// <param name="minute">The minutes (0 through 59)</param>
+    /// <param name="second">The seconds (0 through 59)</param>
+    /// <returns>The date / time with the new time</returns>
+    public static DateTime SetTime(this DateTime value, int hour, int minute, int second)
+    {
+        if (hour is < 0 or > 23)
+            hour = 0;
+
+        if (minute is < 0 or > 59)
+            minute = 0;
+
+        if (second is < 0 or > 59)
+            second = 0;
+
+        return new DateTime(value.Year, value.Month, value.Day, hour, minute, second);
+    }
+    #endregion
 }
