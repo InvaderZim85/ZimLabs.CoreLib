@@ -12,11 +12,11 @@
     <RepositoryUrl>https://github.com/InvaderZim85/ZimLabs.CoreLib</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>helper, extensions</PackageTags>
-    <PackageReleaseNotes>Added extension to extract a custom attribute</PackageReleaseNotes>
+    <PackageReleaseNotes>Added filter functions</PackageReleaseNotes>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <AssemblyVersion>2.1.0</AssemblyVersion>
-    <FileVersion>2.1.0</FileVersion>
-    <Version>2.1.0</Version>
+    <AssemblyVersion>2.2.0</AssemblyVersion>
+    <FileVersion>2.2.0</FileVersion>
+    <Version>2.2.0</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>

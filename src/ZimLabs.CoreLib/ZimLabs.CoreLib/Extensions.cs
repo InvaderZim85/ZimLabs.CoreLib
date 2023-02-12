@@ -1,4 +1,7 @@
-﻿namespace ZimLabs.CoreLib;
+﻿using ZimLabs.CoreLib.Common;
+using ZimLabs.CoreLib.DataObjects;
+
+namespace ZimLabs.CoreLib;
 
 /// <summary>
 /// Provides several extensions
@@ -43,6 +46,49 @@ public static class Extensions
     public static int ToInt(this string value, int fallback = 0)
     {
         return int.TryParse(value, out var result) ? result : fallback;
+    }
+
+    /// <summary>
+    /// Gets the filter type of the specified value
+    /// </summary>
+    /// <param name="value">The value (with wildcards)</param>
+    /// <param name="wildcard">The desired wildcard (optional)</param>
+    /// <returns>The filter type</returns>
+    public static FilterType ToFilterType(this string value, string wildcard = "*")
+    {
+        var start = value.StartsWith(wildcard);
+        var end = value.EndsWith(wildcard);
+
+        return start switch
+        {
+            true when end => FilterType.Contains, // has a wildcard at the start and the end (*Value*)
+            true when !end => FilterType.EndsWith, // has a wildcard at the start (*Value)
+            false when end => FilterType.StartsWith, // has a wildcard at the end (Value*)
+            _ => FilterType.Equals // has no wildcard (Value)
+        };
+    }
+
+    /// <summary>
+    /// Converts the value into a filter entry
+    /// </summary>
+    /// <param name="value">The value (with wildcards)</param>
+    /// <param name="wildcard">The desired wildcard (optional)</param>
+    /// <returns>The filter entry</returns>
+    public static FilterEntry ToFilterEntry(this string value, string wildcard = "*")
+    {
+        return new FilterEntry(value, wildcard);
+    }
+
+    /// <summary>
+    /// Converts the list of value into a list of filter entries
+    /// </summary>
+    /// <param name="values">The list with the values (with wildcard)</param>
+    /// <param name="wildcard">The desired wildcard (optional)</param>
+    /// <returns>The list with the filter</returns>
+    public static List<FilterEntry> ToFilterList(this IEnumerable<string> values, string wildcard = "*")
+    {
+        var tmpList = values.ToList();
+        return tmpList.Any() ? tmpList.Select(s => s.ToFilterEntry(wildcard)).ToList() : new List<FilterEntry>();
     }
     #endregion
 
