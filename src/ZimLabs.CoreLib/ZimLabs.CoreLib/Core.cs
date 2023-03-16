@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Text;
 using ZimLabs.CoreLib.Common;
 using ZimLabs.CoreLib.DataObjects;
 
@@ -35,5 +36,33 @@ public static class Core
             FilterType.EndsWith => value.EndsWith(filter.Value, StringComparison.OrdinalIgnoreCase),
             _ => false
         };
+    }
+
+    /// <summary>
+    /// Combines a list of strings to a single string where each entered value gets its own line
+    /// <example>
+    /// <code>
+    /// var result = Core.CombineString("Value1", "Value2", "Value3");
+    ///
+    /// Console.WriteLine(result);
+    ///
+    /// // Result
+    /// Value1
+    /// Value2
+    /// Value3
+    /// </code>
+    /// </example>
+    /// </summary>
+    /// <param name="values">The list with the values</param>
+    /// <returns>The values as single string. Each value in its own line</returns>
+    public static string CombineString(params string[] values)
+    {
+        var sb = new StringBuilder();
+        foreach (var value in values)
+        {
+            sb.AppendLine(value);
+        }
+
+        return sb.ToString();
     }
 }
